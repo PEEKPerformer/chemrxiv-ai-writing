@@ -63,6 +63,8 @@ EditLens reports relatively robust LLM-agnostic transfer. We will measure genera
 
 All corpus prevalence figures in the eventual manuscript will be accompanied by sensitivity-corrected estimates using the sensitivities measured by our LLM rewrite corpus (polish, rewrite, generate). If the generate sensitivity is <50%, the threshold prevalence will be presented as a lower-bound; mixture estimate will become the headline number.
 
+Amendment 2026-06-10: two Llama generators (Llama-3.1-8B-Instruct, Llama-3.2-3B-Instruct) added before any rewrite was scored. Llama was originally excluded because the cross-check detector is Llama-3.2 based; these cells deliberately measure that self-detection bias (RoBERTa as neutral reference; Llama-3.2-3B is the cross-check detector's own base model) and add a widely-deployed 2024-era control. Not part of H1/H1a; reported separately, no hypothesis.
+
 ### 4.2 Mixture prevalence
 
 The paper-level score distribution is modeled as a mixture of pooled 2017-2021 empirical distribution and an AI-influenced component which is estimated from benchmark variants; mixing weight estimated by maximum likelihood. The output is a yearly weight with paper-clustered bootstrap CI. 
