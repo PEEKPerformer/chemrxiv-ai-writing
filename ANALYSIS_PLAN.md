@@ -112,6 +112,14 @@ Reference strings will be parsed from the raw text beyond each paper's reference
 
 A $5,000 API credits grant has been issued by Pangram Labs to aid in the completion of this study. The primary end-point of AI detection will be re-run on the commercial API and compared to the results of models used in the study: paper-level Pearson r against the RoBERTa score, and yearly flagged-share differences at Pangram's own threshold. No hypothesis.
 
+### 4.8 Disclosure gap (added by amendment 2026-06-10)
+
+Added after the original registration but before any disclosure scan was run. The flagged/unflagged labels used here come from corpus scores that already existed at registration; the disclosure side is what is being pre-specified.
+
+Acknowledgment, declaration, and author-info sections will be scanned for AI-use disclosure statements. Matching is restricted to those sections and to disclosure-shaped phrases (e.g. "ChatGPT was used to improve the language"), not bare model-name mentions, so papers that merely study LLMs are not counted. The pattern list will be frozen in `src/scan_disclosures.py` at first run, calibrated the same way as everywhere else in this study: no pre-2022 paper disclosed LLM writing assistance, so the pattern set must produce <0.5% hits on the pre-2022 corpus. A sample of matches will be human-validated.
+
+H7: among 2024-2026 flagged papers, fewer than 25% carry any AI-use disclosure (Wilson CI). Secondary, descriptive: disclosure rate by year, affiliation group, and flagged status.
+
 ## 5. What this plan does not cover
 
 Exploratory analysis not covered by this list may appear in the manuscript and will be labeled as such. Figure-caption arm and revision analysis await data that is not available yet and may be subject to change.
