@@ -122,6 +122,8 @@ Acknowledgment, declaration, and author-info sections will be scanned for AI-use
 
 H7: among 2024-2026 flagged papers, fewer than 25% carry any AI-use disclosure (Wilson CI). Secondary, descriptive: disclosure rate by year, affiliation group, and flagged status.
 
+Deviation logged 2026-06-12: the frozen pattern set counted "no AI was used" statements as use-disclosures. These were split into their own tier after the first run (a classification bug, not a threshold change). Both numbers are reported: 2.27% as originally run, 2.25% corrected. Conclusion unchanged.
+
 ## 5. What this plan does not cover
 
 Exploratory analysis not covered by this list may appear in the manuscript and will be labeled as such. Figure-caption arm and revision analysis await data that is not available yet and may be subject to change.
