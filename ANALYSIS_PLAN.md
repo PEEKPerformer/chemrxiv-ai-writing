@@ -128,6 +128,8 @@ H7: among 2024-2026 flagged papers, fewer than 25% carry any AI-use disclosure (
 
 Deviation logged 2026-06-12: the frozen pattern set counted "no AI was used" statements as use-disclosures. These were split into their own tier after the first run (a classification bug, not a threshold change). Both numbers are reported: 2.27% as originally run, 2.25% corrected. Conclusion unchanged.
 
+Deviation logged 2026-06-12 (sample validation): the registered human-validation step found further classifier false positives — "curie" (collided with Curie-Weiss/Institut Curie), "claude" (matched "Université Claude Bernard Lyon"), and loose AI-term+writing-word matching (caught citations, titles, keyword lists). Matching was tightened to require a disclosure FRAME ("the authors used X to improve…", "declaration of generative AI", etc.). Effect: pre-2022 calibration 0.004%→0.00%; H7 2.25%→1.60% (84/5,235 flagged 2024-26 disclose; gap widens to ~98.4%; flagged still disclose at 3.6× unflagged). All corrected errors had inflated the count, so the conclusion strengthens. Residual: a small subject-matter FP rate from LLM-methods papers, which also inflates the count.
+
 ## 5. What this plan does not cover
 
 Exploratory analysis not covered by this list may appear in the manuscript and will be labeled as such. Figure-caption arm and revision analysis await data that is not available yet and may be subject to change.
