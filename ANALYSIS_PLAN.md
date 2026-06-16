@@ -71,6 +71,8 @@ The paper-level score distribution is modeled as a mixture of pooled 2017-2021 e
 
 H2: The 2025 weight exceeds 2022 weight, p<0.05. A consistency check will be performed to ensure weight does not fall below the same year's flagged share.
 
+Result logged 2026-06-12: H2 PASS (π rises 0.2%→8.0% generate / →18.8% substantial 2022→2025, bootstrap p<0.0001). The consistency check did NOT hold as written: π sits below the flag rate because F_AI was built as predominantly-AI text (so π estimates predominant-AI prevalence) while the flag rate counts any threshold crossing including partial use. This is interpreted, not corrected: prevalence is reported as a bracket — predominant-AI (~15% in 2026), substantial (~32%), any-detectable (~46%) — the gaps being partial assistance. A continuous-dose mixture is noted as the proper refinement.
+
 
 
 ### 4.3 Changepoint
