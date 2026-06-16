@@ -71,7 +71,7 @@ The paper-level score distribution is modeled as a mixture of pooled 2017-2021 e
 
 H2: The 2025 weight exceeds 2022 weight, p<0.05. A consistency check will be performed to ensure weight does not fall below the same year's flagged share.
 
-Result logged 2026-06-12: H2 PASS (π rises 0.2%→8.0% generate / →18.8% substantial 2022→2025, bootstrap p<0.0001). The consistency check did NOT hold as written: π sits below the flag rate because F_AI was built as predominantly-AI text (so π estimates predominant-AI prevalence) while the flag rate counts any threshold crossing including partial use. This is interpreted, not corrected: prevalence is reported as a bracket — predominant-AI (~15% in 2026), substantial (~32%), any-detectable (~46%) — the gaps being partial assistance. A continuous-dose mixture is noted as the proper refinement.
+Result + DEVIATION logged 2026-06-12: H2 PASS (π rises 0.2%→8.0% generate / →18.8% substantial 2022→2025, bootstrap p<0.0001). DEVIATION — the registered consistency check FAILED (this is a deviation, not merely a result): π sits below the flag rate because F_AI was built as predominantly-AI text (so π estimates predominant-AI prevalence) while the flag rate counts any threshold crossing including partial use. This is interpreted, not corrected: prevalence is reported as a bracket — predominant-AI (~15% in 2026), substantial (~32%), any-detectable (~46%) — the gaps being partial assistance. A continuous-dose mixture is noted as the proper refinement.
 
 
 
@@ -110,9 +110,18 @@ the five yearly values with year < 0, bootstrap p < 0.05. Secondary,
 descriptive: the same statistics computed within flagged and unflagged papers
 separately.
 
+Result logged 2026-06-12: **H5 FAIL (genuine null).** Yearly dispersion
+0.092/0.089/0.092/0.092/0.101 (2022-26); Spearman(year, dispersion)=+0.40
+(wrong sign), bootstrap p=0.95. Prose did NOT homogenize on the common-word
+profile. Reported as a null, not rescued. Caveat: n=5 yearly points is
+low-powered (Spearman needs |rho|≥0.9 at n=5); the common-word profile may
+miss higher-order homogenization (embedding-dispersion = exploratory future).
+
 ### 4.6 Reference verification
 
 Reference strings will be parsed from the raw text beyond each paper's reference onset. References carrying a DOI will be resolved using the crossref API and checked for a) existence and b) title agreement with the cited string; references without a DOI will be matched by crossref bibliographic query. A reference will be considered "unverifiable" if no match scores above a cutoff chosen such that at most 1% of pre-2022 references come out unverifiable (the pre-LLM corpus calibrates the checker's false-flag floor the same way it calibrates the detectors). H6: among 2023-2026 papers, flagged paper will have a higher unverifiable reference rate than unflagged papers within a particular posting year; Mantel-Haenszel tested, clustered bootstrap by paper. Both directions will be reported as a null is informative here.
+
+Result + deviation logged 2026-06-12: the DOI-existence channel was implemented and run (parser designed via a multi-agent workflow; src/parse_references.py). It is INCONCLUSIVE: pre-2022 papers show a ~24% unverifiable-DOI rate that is PDF-extraction noise (mangled/truncated DOIs that 404), not fabrication, which drives the calibration cutoff to 100% and leaves no discrimination (MH undefined). Raw mean rates lean the hypothesized direction (flagged 22.7% vs unflagged 16.0%) but are noise-dominated and confounded. DEVIATION: the registered non-DOI bibliographic-query channel (Crossref query.bibliographic) is NOT yet implemented; it is REQUIRED to test H6 (it tolerates mangled DOIs by fuzzy-matching whole reference strings) and is the remaining work for this arm. H6 is therefore currently untested, not null.
 
 ### 4.7 Pangram API replication
 
@@ -128,7 +137,9 @@ H7: among 2024-2026 flagged papers, fewer than 25% carry any AI-use disclosure (
 
 Deviation logged 2026-06-12: the frozen pattern set counted "no AI was used" statements as use-disclosures. These were split into their own tier after the first run (a classification bug, not a threshold change). Both numbers are reported: 2.27% as originally run, 2.25% corrected. Conclusion unchanged.
 
-Deviation logged 2026-06-12 (sample validation): the registered human-validation step found further classifier false positives — "curie" (collided with Curie-Weiss/Institut Curie), "claude" (matched "Université Claude Bernard Lyon"), and loose AI-term+writing-word matching (caught citations, titles, keyword lists). Matching was tightened to require a disclosure FRAME ("the authors used X to improve…", "declaration of generative AI", etc.). Effect: pre-2022 calibration 0.004%→0.00%; H7 2.25%→1.60% (84/5,235 flagged 2024-26 disclose; gap widens to ~98.4%; flagged still disclose at 3.6× unflagged). All corrected errors had inflated the count, so the conclusion strengthens. Residual: a small subject-matter FP rate from LLM-methods papers, which also inflates the count.
+Deviation logged 2026-06-12 (sample validation): the registered human-validation step found further classifier false positives — "curie" (collided with Curie-Weiss/Institut Curie), "claude" (matched "Université Claude Bernard Lyon"), and loose AI-term+writing-word matching (caught citations, titles, keyword lists). Matching was tightened to require a disclosure FRAME. Effect: H7 2.25%→1.60%.
+
+Deviation logged 2026-06-12 (RECALL audit): an adversarial recall audit found the frame-only matcher was too STRICT — it missed passive-voice disclosures ("chatgpt was used to improve readability") and disclosures filed outside acknowledgments (conclusion / standalone AI-statement → "other" / data-availability), so 1.60% OVERSTATED the gap. Final matcher requires (AI-term) AND (use-frame, incl. passive) AND (writing-object term), scans {acknowledgments, competing, author_info, conclusion, other, data_avail}, with a BOILER_NEG guard. **Final H7: 166/5,235 = 3.17% of flagged 2024-26 papers disclose** (Wilson 2.73–3.68), gap 96.8%, flagged 3.7× unflagged; pre-2022 calibration 0.00%; sample precision ~92%. This supersedes 1.60% (under-recall) and a raw 3.84% expansion (under-precision). Report as ~3% / ~97% gap with the precision-recall caveat.
 
 ## 5. What this plan does not cover
 
