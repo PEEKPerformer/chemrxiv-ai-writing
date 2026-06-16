@@ -79,6 +79,8 @@ Result logged 2026-06-12: H2 PASS (π rises 0.2%→8.0% generate / →18.8% subs
 
 The segmented binomial regression of monthly flagged counts on posting month, a single breakpoint scored by profile likelihood from 2017-01 through 2026-05. H3: the breakpoint's 95% CI contains 2022-12, the first full month after the general release of ChatGPT as a consumer product.
 
+Result logged 2026-06-12: **H3 FAILS as registered.** Breakpoint MLE 2022-01, 95% CI 2021-09..2022-06, which excludes 2022-12. Diagnosis (not a model change): the monthly flag rate is at the pre-2022 floor through 2022-12 and rises convexly thereafter; a single broken line cannot fit a multi-year accelerating curve and places the kink early. The model is reported failed and not swapped. Exploratory (non-registered) onset measure — first sustained run above the pre-2022 floor's upper 95% bound — is 2023-06, ~7 months post-ChatGPT, consistent with drafting-to-posting latency. The substantive onset claim is carried by the trajectory and this descriptive measure, explicitly labeled exploratory.
+
 ### 4.4 Author-level adoption panel
 
 Cohort: OpenAlex author IDs with at least two corpus papers posted
