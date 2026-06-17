@@ -94,3 +94,23 @@ Matcher refined over three passes (each changed the estimate):
    conclusion, other, data_avail}, with a negative-boilerplate guard:
    1.60% → 3.17%.
 Superseded values: 1.60% (under-recall), 3.84% (under-precision interim).
+
+## H6 (reference verification, §4.6) — channel B result: NULL (2026-06-17)
+Channel B (Crossref query.bibliographic) implemented and run after channel A
+was inconclusive. Matcher segments reference tails, fuzzy-matches each ref,
+classifies verifiable/unverifiable; validated by 4 independent agents on 125
+refs (precision/recall + failure modes), then hardened (embedded/PII/Nature-URL
+DOI extraction, component-DOI filter, NFKD+edit-distance author match,
+contextual year, structural-source bucket, parent-DOI exclusion).
+Result (n=350 post-2022 papers, 60/cell): per-paper unverifiable rate
+flagged 2.9% vs unflagged 2.8%; per-ref flagged 4.7% vs unflagged 5.7% vs
+pre-2022 6.1%. MH OR = 1.04 [0.18-4.97], bootstrap p=0.99. NO difference
+between flagged and unflagged papers.
+Caveats: matcher false-negative floor ~6% on real refs (not the registered
+<=1% calibration target — legitimately-hard citations: pre-DOI/conference/
+books/title-free), so the absolute rate is not a fabrication rate; only the
+cross-group comparison is interpreted. Underpowered for rare fabrications
+(wide CI). Validation found genuine fabricated references (3/125, all in
+flagged papers, DOI-404 + zero title match) — real but too rare to produce a
+paper-level differential. Conclusion: no evidence flagged papers carry more
+unverifiable references; isolated fabrications occur but are rare.
