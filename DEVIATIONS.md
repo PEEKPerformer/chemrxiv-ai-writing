@@ -201,3 +201,19 @@ consistency-check label (BUG-3) was confirmed correct, not a bug.
 - Citation consequence: the advisor-packet figure "+0.30" is superseded by the
   committed estimator (src/val_consequences.py): year x subfield stratified
   flagged-minus-unflagged citation difference = +0.24 [0.07, 0.48]. No penalty.
+
+## Non-registered robustness analysis — Binoculars (2026-06-17)
+Binoculars (Hans et al. 2024, arXiv:2401.12070; falcon-7b + falcon-7b-instruct
+perplexity/cross-perplexity) run as an architecturally-independent convergent-
+validity check on EditLens. NOT in the registered plan: the registered cross-
+detectors are EditLens Llama-3.2-3B and the §4.7 Pangram API replication
+(unrun). Exploratory, no hypothesis.
+- Scope: year-stratified corpus sample (5,536 papers / 107,464 chunks, <=600/yr,
+  2017-2026) and the in-domain ground-truth benchmark (1,000 originals + 20,995
+  rewrites). Scripts: src/build_binoculars_sample.py, src/hpc/score_binoculars.*,
+  src/val_binoculars.py. Storrs A100, falcon pair bf16.
+- Interpretation: trend reproduction + paper-level rank correlation with EditLens,
+  and benchmark separation/dose-response — NOT absolute prevalence. Binoculars is
+  less sensitive than EditLens (the EditLens source paper benchmarks EditLens as
+  superior to Binoculars), so it reads lower prevalence by construction; a
+  weaker, independent detector showing the same rise and ranking is the point.
