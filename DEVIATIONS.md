@@ -1,12 +1,19 @@
 # Deviations & results log (append-only)
 
 The registration is frozen at the GitHub releases `v1.0.0-plan` /
-`v1.1.0-plan` / `v1.2.0-plan` and their Zenodo deposits; `ANALYSIS_PLAN.md`
-is held byte-identical to `v1.2.0-plan` and is not edited. This file is the
-**append-only** record of results and deviations: entries are added, never
-reworded or removed. Authoritative timestamps are the git commit dates of
-this file; the dates in entries are analysis dates (analyses ran 2026-06-10
-through 2026-06-16).
+`v1.1.0-plan` / `v1.2.0-plan` and their **immutable Zenodo deposits** — those
+are the authoritative registration anchor and were never altered. The working
+`ANALYSIS_PLAN.md` is now held byte-identical to `v1.2.0-plan`. Disclosure
+(audit PREREG-01): during 2026-06-12…16 the working `ANALYSIS_PLAN.md` was
+edited in place with interim results across several commits, then on 2026-06-16
+(commit `cf66b33`) restored byte-identical to the frozen tag, with all results
+migrated into this file. No registered prediction was ever rewritten, and the
+tag/Zenodo anchor is intact, so this is not post-hoc hypothesizing — but the
+plan was not continuously immutable in the working tree. This file is intended
+as an **append-only** record going forward (git history of this file is the
+audit trail); the meta header is corrected for accuracy where needed, entries
+are not. Entry dates are analysis dates (analyses ran 2026-06-10 through
+2026-06-16); the git commit dates of this file are authoritative.
 
 Format per entry: hypothesis — registered → actual → reason.
 
@@ -114,3 +121,65 @@ cross-group comparison is interpreted. Underpowered for rare fabrications
 flagged papers, DOI-404 + zero title match) — real but too rare to produce a
 paper-level differential. Conclusion: no evidence flagged papers carry more
 unverifiable references; isolated fabrications occur but are rare.
+
+## Audit remediation — full study audit (2026-06-17)
+
+A second, more exhaustive multi-agent audit (8 dimensions, adversarial
+refute-verification) was run. No finding altered a hypothesis verdict and all
+headline numbers reproduced. Confirmed items remediated:
+
+- STAT-01: the "null-centered bootstrap ASL" reported for H1/H4/H6 was not a
+  valid null test (it reduced to a Wald z over the bootstrap SD). Replaced —
+  H1 now reports a permutation test of association (rho=0.812, perm p=0.001);
+  H4 a Cochran-Mantel-Haenszel test (OR 3.61, CMH p~3e-178); H6 a CMH test
+  (OR 1.04, CMH p=0.79). The clustered percentile CIs remain the primary
+  inference. Directions unchanged.
+
+- PREREG-04 (H7 section scope): registered §4.8 restricts matching to 3
+  sections (acknowledgments / competing-declaration / author_info); the
+  recall-audit matcher broadened this to 6 (adds conclusion / other /
+  data_avail). Both reported: registered scope 88/5235 = 1.68%; broadened scope
+  166/5235 = 3.17%. Both far under the registered <25% bound. The broadening is
+  a deviation, now flagged in scan_disclosures.py.
+
+- PREREG-05 (H6 calibration): the registered <=1% pre-2022 unverifiable-rate
+  calibration is unreachable (matcher false-negative floor ~5-6% on
+  legitimately-hard real refs). H6 is a relative flagged-vs-unflagged
+  comparison only, not an absolute fabrication rate (verify_refs_bib.py now
+  states this). Underpowered: the binary cutoff rests on ~10 papers and only
+  the first 12 of ~40 references per paper are checked. Read as "no detectable
+  differential at this power," not "no fabrication."
+
+- F4 (H6 per-ref estimator): the per-ref rates reported here (flagged 4.7% /
+  unflagged 5.7% / pre-2022 6.1%) are pooled-per-ref; the script also prints a
+  mean-of-paper rate (5.2% / 6.3%). Both are now printed and labeled.
+
+- C2 / M4 / M5: the sensitivity analyses (H2 KDE bandwidth sweep, specificity
+  ICC, H4 monthly-strata OR) were previously computed ad hoc and recorded only
+  in the lab notebook. Now committed as src/val_sensitivity.py: H2 pi_2026 =
+  14-18% across bw 0.05-0.20 (trend robust); chunk-score ICC = 0.237 (chunk FPR
+  4.63% vs paper 0.94%, reconciling the 2.8% passage vs 1% paper specificity);
+  H4 monthly OR = 3.45 vs yearly 3.61.
+
+- CP-1 (version dedup): the dedup regex mistook a random id of the form vNNNN
+  (new-format chemrxiv-YYYY-vNNNN) for a version suffix, over-merging ~4 papers
+  in papers_master (~0.01%). The regex is now guarded in build_master.py /
+  country_map.py / make_figures.py / version_pairs.py. papers_master.csv as
+  analyzed retains the ~4 over-merges; the effect is immaterial to every result,
+  so the corpus was not rebuilt.
+
+- Detector external validity (recalibrated): EditLens is validated in its source
+  paper (arXiv 2510.03154) — multi-domain training, OOD-domain (Enron, ternary
+  F1 0.904->0.866) and OOD-generator (Llama-3.3-70B ->0.850) generalization,
+  robustness, and superiority over Pangram/GPTZero/Binoculars/FastDetectGPT/
+  DetectAIve. Our in-domain benchmark (H1/H1a) supplies the chemistry-specific
+  validation EditLens lacks. The registered §4.7 cross-detector run uses
+  Pangram, which is made by the same lab (Pangram Labs) and saturates on edited
+  text (AI-edited F1 43.2 vs EditLens 86.8); it is a same-lab architecture
+  contrast, not independent validation, and will read lower prevalence by
+  construction.
+
+Documentation-only fixes: stale docstring counts (41,021 -> 40,212) and
+score-dir paths (scores_val_bench -> scores_val_bench3); removed dead code in
+build_bib_validation.py; specificity stdout relabeled (passage 2.8% vs paper 1%
+FPR).
