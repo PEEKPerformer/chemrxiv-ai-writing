@@ -183,3 +183,12 @@ Documentation-only fixes: stale docstring counts (41,021 -> 40,212) and
 score-dir paths (scores_val_bench -> scores_val_bench3); removed dead code in
 build_bib_validation.py; specificity stdout relabeled (passage 2.8% vs paper 1%
 FPR).
+
+Code triage (the audit's unverified CODE findings, adjudicated by hand and
+fixed): H5 secondary length-mismatch crash guard (BUG-1); H5 p is now an exact
+permutation test over the 5 year points (BUG-2; rho +0.40, p=0.78, FAIL holds);
+F_AI averaging repointed to the deduped chunk-count array (BUG-4; pi unchanged —
+2026 generate 14.0%, substantial 32.0%, H2 PASS p<1e-4); removed a dead
+group_g merge (BUG-5); H3 changepoint non-regular-asymptotics and H2
+fixed-reference-density caveats noted in code (STAT-04/05). The val_mixture
+consistency-check label (BUG-3) was confirmed correct, not a bug.
