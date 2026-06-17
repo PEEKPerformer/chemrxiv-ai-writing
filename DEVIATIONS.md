@@ -192,3 +192,12 @@ F_AI averaging repointed to the deduped chunk-count array (BUG-4; pi unchanged â
 group_g merge (BUG-5); H3 changepoint non-regular-asymptotics and H2
 fixed-reference-density caveats noted in code (STAT-04/05). The val_mixture
 consistency-check label (BUG-3) was confirmed correct, not a bug.
+
+## Errata (2026-06-17, append-only)
+- H5 (homogenization): the H5 entry above records a bootstrap p = 0.95. The
+  reported test is now an exact permutation over the 5 yearly dispersion points;
+  p = 0.78. Conclusion unchanged (NULL: rho = +0.40, wrong sign). The manuscript
+  reports the permutation p = 0.78.
+- Citation consequence: the advisor-packet figure "+0.30" is superseded by the
+  committed estimator (src/val_consequences.py): year x subfield stratified
+  flagged-minus-unflagged citation difference = +0.24 [0.07, 0.48]. No penalty.
