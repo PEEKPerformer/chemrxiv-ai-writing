@@ -217,3 +217,16 @@ detectors are EditLens Llama-3.2-3B and the §4.7 Pangram API replication
   less sensitive than EditLens (the EditLens source paper benchmarks EditLens as
   superior to Binoculars), so it reads lower prevalence by construction; a
   weaker, independent detector showing the same rise and ranking is the point.
+
+## Erratum — Pangram model lineage (2026-06-18)
+An earlier note ("Detector external validity", above) said the §4.7 Pangram run
+"saturates on edited text (AI-edited F1 43.2)" and "will read lower prevalence by
+construction." That F1 43.2 is the OLD Pangram binary classifier (Emi & Spero
+2024, arXiv:2402.14873) as benchmarked in the EditLens paper. Pangram's CURRENT
+model is built on EditLens. So the §4.7 run is a larger-scale within-method
+replication (expected to AGREE with EditLens, corroborating reproducibility at
+scale), NOT a contrast that reads lower, and NOT independent validation. The
+Binoculars run is the only architecturally-independent check; it is weak on
+editing by design (it detects generation, benchmark AUROC 0.64). Net: no
+off-the-shelf detector independently validates edit-level prevalence — that is
+intrinsic to studying editing, which only EditLens/Pangram-Labs models target.
