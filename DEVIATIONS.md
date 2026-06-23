@@ -230,3 +230,28 @@ Binoculars run is the only architecturally-independent check; it is weak on
 editing by design (it detects generation, benchmark AUROC 0.64). Net: no
 off-the-shelf detector independently validates edit-level prevalence — that is
 intrinsic to studying editing, which only EditLens/Pangram-Labs models target.
+
+## §4.7 (Pangram commercial cross-detector) — EXECUTED (2026-06-23)
+Registered §4.7 (no hypothesis): run Pangram, compare to EditLens (paper-level r;
+yearly flagged-share at Pangram's own threshold). Executed via the $5k Pangram Labs
+compute grant (~$4.2-4.4k spent). Model v3.3.2 (EditLens-derived, lower FPR).
+Scope: benchmark calibration (1,967 passages), year-stratified random sample
+(n=3,490, 2019-2026), near-census of 2025+2026 (10,168 papers, 98% coverage).
+Input: de-noised proper-case section text; full raw results + windows stored.
+Result: paper-level Pearson 0.64 (Spearman 0.42); Pangram flags 7.8% (2025) /
+22.1% (2026) vs EditLens 31.6/46.1 (catches ~25-48%); section anatomy reproduces
+EditLens (discussion-heaviest, methods-lightest); benchmark dose-response 0.43 (vs
+EditLens 0.81). Reported in Results "Cross-detector validation" + Supp. Note S2.
+Notes/deviations:
+1. Input is de-noised section text, not the EditLens-normalized chunk text.
+2. An interim stage-1 read (s_rob-stratified) suggested Pangram "did not reproduce
+   the rise"; the representative + census views corrected this (it reproduces the
+   rise at ~half magnitude). Logged for transparency.
+3. Pangram is EditLens-derived -> within-method replication, not independent
+   validation. The independent check is the non-registered Binoculars run (S1),
+   which under-reads editing by design.
+4. Pangram's reported ultra-low FPR (~1e-4; ~0% on scientific text) makes its flag
+   rate a lower bound; used to rebut the false-positive critique.
+5. All §4.7 reporting is aggregate and de-identified; no individual paper named.
+6. Up to ~$0-200 of an interrupted run may have been billed-but-unfetched (job ids
+   not logged in that early run); the runner now logs ids and recovers on resume.
