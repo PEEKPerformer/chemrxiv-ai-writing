@@ -255,3 +255,16 @@ Notes/deviations:
 5. All §4.7 reporting is aggregate and de-identified; no individual paper named.
 6. Up to ~$0-200 of an interrupted run may have been billed-but-unfetched (job ids
    not logged in that early run); the runner now logs ids and recovers on resume.
+
+### §4.7 clarification (registered vs exploratory + scope) (2026-06-23)
+Registered §4.7 = exactly two endpoints: (a) paper-level Pearson r vs the RoBERTa
+score, (b) yearly flagged-share at Pangram's own threshold. No hypothesis. Both
+done as specified (Pearson 0.64; native prediction_short as the threshold; the
+pre-ChatGPT years are the low end of the registered yearly curve, 0/1,296 flagged).
+NON-REGISTERED / exploratory additions reported alongside (labelled as such in
+manuscript S2): section anatomy (window->section), benchmark dose-response,
+predominant/assisted decomposition, and the Binoculars independent check (S1).
+SCOPE DEVIATION: the registered run implies the full corpus; that exceeded the
+grant (~$13.5k vs $5k), so we ran a year-stratified random sample (n=3,490) plus a
+near-census of 2025-2026, not all 40k. No post-hoc corpus fishing: the Pangram
+scalar was pre-specified on the benchmark, the threshold is Pangram's native.
