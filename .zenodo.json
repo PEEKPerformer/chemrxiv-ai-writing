@@ -1,0 +1,16 @@
+{
+  "title": "Detecting AI-assisted writing in ChemRxiv: pre-registrations, deviations, and protocols",
+  "upload_type": "software",
+  "creators": [
+    {"name": "Ferland, Brenden", "affiliation": "University of Connecticut"},
+    {"name": "Adamson, Douglas H.", "affiliation": "University of Connecticut"}
+  ],
+  "keywords": [
+    "AI-generated text detection",
+    "chemistry",
+    "preprints",
+    "pre-registration",
+    "EditLens"
+  ],
+  "description": "Pre-registrations, deviations, and frozen protocols for a study of AI-assisted writing in ChemRxiv preprints. Includes the EditLens-Chem protocol: a chemistry- and current-generation-adapted AI-edit detector, with its analysis code frozen before model training and before any held-out evaluation."
+}

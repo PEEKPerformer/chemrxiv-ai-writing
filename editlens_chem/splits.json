@@ -1,0 +1,27 @@
+{
+ "seed": 20260623,
+ "scheme": "grouped-by-passage",
+ "cv_folds": 5,
+ "logo_generators": [
+  "gemma4-12b",
+  "glm47-flash",
+  "gptoss-20b",
+  "llama31-8b",
+  "llama32-3b",
+  "qwen25-7b",
+  "qwen36-27b"
+ ],
+ "temporal_holdout_years": [
+  2020,
+  2021
+ ],
+ "fold_sizes": {
+  "0": 4395,
+  "1": 4392,
+  "2": 4397,
+  "3": 4395,
+  "4": 4388
+ },
+ "n_examples": 21967,
+ "n_passages": 1000
+}
