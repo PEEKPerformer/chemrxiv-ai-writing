@@ -268,3 +268,18 @@ SCOPE DEVIATION: the registered run implies the full corpus; that exceeded the
 grant (~$13.5k vs $5k), so we ran a year-stratified random sample (n=3,490) plus a
 near-census of 2025-2026, not all 40k. No post-hoc corpus fishing: the Pangram
 scalar was pre-specified on the benchmark, the threshold is Pangram's native.
+
+## Exploratory analyses beyond the registered plan (2026-06-23)
+Additional analyses on EXISTING data only (no new scoring/API). None were
+pre-registered; all are exploratory / hypothesis-generating, not confirmatory, and
+will be labelled exploratory in the manuscript (no result from them is presented as
+a registered test). Logged here as a block so the registered/exploratory boundary
+stays explicit; per-analysis methods go in the manuscript when each is run.
+- Author adoption event-study (within-author before/after first flagged paper).
+- Co-authorship contagion (flagged-co-author exposure -> later flag odds).
+- Preprint->journal conversion vs flag status (publication rate/speed/venue).
+- Generator attribution (classifier trained on the benchmark; caveat: benchmark
+  generators are not the commercial models authors mostly use).
+- Tell-word frequency vs edit-extent trajectory (lexical-evasion over time).
+- Topic scope vs flag status (engages Hao & Evans 2026).
+Aggregate and de-identified throughout.
