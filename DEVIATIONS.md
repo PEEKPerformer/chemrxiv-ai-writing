@@ -283,3 +283,28 @@ stays explicit; per-analysis methods go in the manuscript when each is run.
 - Tell-word frequency vs edit-extent trajectory (lexical-evasion over time).
 - Topic scope vs flag status (engages Hao & Evans 2026).
 Aggregate and de-identified throughout.
+
+### Exploratory analyses — RESULTS (2026-06-23)
+The six exploratory analyses registered above are complete (existing data + open
+Crossref API; no new detector scoring). All labelled exploratory/non-registered in
+the manuscript (Supp Notes S3-S7, Figs S9-S13). Outcomes:
+- #5 lexical (Kobak excess-words, corpus-wide, 8989 words): the broad AI-style
+  vocabulary rises WITH the flag rate (+40% 2024-26); only the most PUBLICIZED tells
+  reverse (intricate -55%, pivotal -53%, innovative -50%, showcase -49% from 2024
+  peak). Conclusion: fixed known-word lists increasingly UNDER-read AI use; edit
+  detection does not drift. (Corrected an initial curated-12-word read.) Fig S9/S3.
+- #6 topic scope: NULL. Standalone popularity gradient flat (Spearman 0.025); the
+  event-study topic-breadth DiD is -0.002. The naive -25% was a paper-count artifact.
+  Folded into #1.
+- #1 event-study (1548 adopters vs 1945 matched controls, aligned-window DiD):
+  persistent but STABLE. No escalation (post-adoption edit-extent flat ~0.10), no
+  topic/output change, team size +0.7 co-authors. Fig S10/S4.
+- #4 generator fingerprint: 7 open models distinguishable by style, 64% CV accuracy
+  (4.5x chance), family-structured confusion. NOT applied to the corpus (commercial
+  models absent from the benchmark). Fig S11/S5.
+- #3 conversion: linkage via CROSSREF is-preprint-of, NOT an OpenAlex re-pull (the OA
+  snapshot lacked venue/published-version links). Flagged preprints convert -3.8pp
+  [year-stratified, CI -7.1,-0.5] / -4.8pp [year x topic, -10.8,-1.4], to the same
+  venues. Sits beside the registered no-citation-penalty result. Fig S12/S6.
+- #2 contagion: co-author exposure -> next-year adoption, MH OR 1.61 [1.52,1.69].
+  Homophily/shared-lab confound stated; reported as association. Fig S13/S7.
